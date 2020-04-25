@@ -21,16 +21,18 @@ mysql.init_app(app)
 def index():
 	connection=mysql.connect()
 	if request.method == "POST":
+		"""
 		details = request.form
 		firstName = details['fname']
 		lastName = details['lname']
+		"""
 		cur = connection.cursor()
-		cur.execute("INSERT INTO MyUsers(firstName, lastName) VALUES (%s, %s)", (firstName, lastName))
+		cur.execute("UPDATE MyUsers SET lastName='smith' WHERE lastname='rod';")
 		connection.commit()
 		cur.close()
 		return "success"
 	
-	return render_template('index.html')
+	return render_template('tindex.html')
 
 
 if __name__ == '__main__':
