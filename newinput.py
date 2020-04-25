@@ -19,7 +19,7 @@ cursor = db['cursor']
 connection = db['connection']
 
 def main_function():
-	cursor.execute("INSERT INTO MyUsers(firstName, lastName) VALUES (%s, %s)", ("larry", "savidge"))
+	cursor.execute("INSERT INTO MyUsers(firstName, lastName) VALUES (%s, %s)", ("lynda", "savidge"))
 	connection.commit()
 
 main_function()

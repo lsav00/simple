@@ -19,17 +19,19 @@ mysql.init_app(app)
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
+	rendr=render_template('index.html')
 	connection=mysql.connect()
 	if request.method == "POST":
 		details = request.form
 		firstName = details['fname']
 		lastName = details['lname']
-		cur = mysql.get_db().cursor()
+		cur = connection.cursor()
 		cur.execute("INSERT INTO MyUsers(firstName, lastName) VALUES (%s, %s)", (firstName, lastName))
 		connection.commit()
 		cur.close()
-		return 'success'
-	return render_template('index.html')
+		return rendr
+	
+	#return rendr
 
 
 if __name__ == '__main__':
